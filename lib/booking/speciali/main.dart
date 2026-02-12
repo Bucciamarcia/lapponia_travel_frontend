@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/booking/single_panel.dart';
+import 'package:lapponia_travel_frontend/booking/speciali/invia_modulo.dart';
 
 class SpecialiMain extends StatelessWidget {
   const SpecialiMain({super.key});
@@ -98,7 +99,11 @@ class SpecialiMain extends StatelessWidget {
                                                   "Prenota questa vacanza",
                                               icon: Icon(Icons.pending_actions),
                                               moreInfoUrl: v.moreInfoUrl,
-                                              onCtaPressed: () {},
+                                              onCtaPressed: () => showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    ModuloSpeciali(vacanza: v),
+                                              ),
                                             );
                                           }
                                         },
