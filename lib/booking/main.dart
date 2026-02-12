@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lapponia_travel_frontend/booking/models.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/booking/single_panel.dart';
 import 'package:lapponia_travel_frontend/router.dart';
