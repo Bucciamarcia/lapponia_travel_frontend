@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lapponia_travel_frontend/booking/speciali/main.dart';
+import 'package:lapponia_travel_frontend/common/backend_router.dart';
+import 'package:lapponia_travel_frontend/common/error_handling.dart';
 
 class ModuloSpeciali extends StatelessWidget {
   final VacanzeSpeciali vacanza;
@@ -66,7 +71,7 @@ class ModuloSpeciali extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: "Dettagli",
                       hint: Text(
-                        "Spiega più in dettagli chi sei e che che tipo di avventura cerchi.",
+                        "Spiega più in dettaglio chi sei, che avventura cerchi, se hai domande o altro.",
                       ),
                     ),
                     minLines: 5,
@@ -84,10 +89,47 @@ class ModuloSpeciali extends StatelessWidget {
               spacing: 5,
               children: [
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     final isValid = formKey.currentState?.saveAndValidate();
                     if (isValid == null || !isValid) return;
                     final values = formKey.currentState!.value;
+                    try {
+                      final encoder = JsonEncoder.withIndent("  ");
+                      final prettyValues = encoder.convert(values);
+                      await BackendRouter.post(
+                        "sendemailadmin",
+                        {'Content-Type': 'application/json'},
+                        _buildRequestBody(
+                          "info@lapponiatravel.com",
+                          values["email"],
+                          vacanza.title,
+                          prettyValues,
+                        ),
+                      );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          confirmationSnackbar(
+                            context,
+                            "Richiesta inviata con successo",
+                          ),
+                        );
+                      }
+                      if (context.mounted) context.pop();
+                    } catch (e, s) {
+                      BasicLogger().error(
+                        "Couldn't send email",
+                        error: e,
+                        stackTrace: s,
+                      );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          errorSnackBar(
+                            context,
+                            "Impossibile inviare la richiesta",
+                          ),
+                        );
+                      }
+                    }
                   },
                   child: Text("Invia"),
                 ),
@@ -101,5 +143,19 @@ class ModuloSpeciali extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _buildRequestBody(
+    String to,
+    String replyTo,
+    String tourName,
+    String content,
+  ) {
+    return jsonEncode({
+      "to": to,
+      "replyTo": replyTo,
+      "subject": "Nuova richiesta: $tourName",
+      "content": content,
+    });
   }
 }
