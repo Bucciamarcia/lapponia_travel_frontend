@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:lapponia_travel_frontend/booking/booking.dart';
+import 'package:lapponia_travel_frontend/booking/classica/classica.dart';
 import 'package:lapponia_travel_frontend/booking/speciali/speciali.dart';
 
 final router = GoRouter(
@@ -7,6 +8,10 @@ final router = GoRouter(
     GoRoute(
       path: Routes.home.path,
       builder: (context, state) => BookingScreen(),
+    ),
+    GoRoute(
+      path: Routes.lapponiaClassica.path,
+      builder: (context, state) => ClassicaScreen(),
     ),
     GoRoute(
       path: Routes.vacanzeSpeciali.path,
