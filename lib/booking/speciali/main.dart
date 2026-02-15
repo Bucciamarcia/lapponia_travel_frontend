@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/booking/single_panel.dart';
 import 'package:lapponia_travel_frontend/booking/speciali/invia_modulo.dart';
+import 'package:lapponia_travel_frontend/booking/speciali/repository.dart';
 
 class SpecialiMain extends StatelessWidget {
   const SpecialiMain({super.key});
@@ -9,7 +10,7 @@ class SpecialiMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: BookingHomeRepository().getImageUrl("hb5osah1oty0b7c"),
+      future: VacanzeSpecialiRepository().getPagedata(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
@@ -18,13 +19,14 @@ class SpecialiMain extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Scaffold(body: Center(child: Text("Error loading image")));
         } else {
-          final imageUrl = snapshot.data!;
+          final pageData = snapshot.data!;
+          print(pageData);
           return Scaffold(
             body: Container(
               constraints: BoxConstraints.expand(),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(imageUrl),
+                  image: NetworkImage(pageData.splashUrl),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -70,10 +72,10 @@ class SpecialiMain extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                   ),
                                   Wrap(
-                                    children: VacanzeSpeciali.values.map((v) {
+                                    children: pageData.tours.map((v) {
                                       return FutureBuilder(
                                         future: BookingHomeRepository()
-                                            .getImageUrl(v.spashImageId),
+                                            .getImageUrl(v.splash),
                                         builder: (context, snapshot) {
                                           if (snapshot.hasError) {
                                             return Text("Error loading image");
@@ -98,7 +100,7 @@ class SpecialiMain extends StatelessWidget {
                                               buttonCta:
                                                   "Prenota questa vacanza",
                                               icon: Icon(Icons.pending_actions),
-                                              moreInfoUrl: v.moreInfoUrl,
+                                              moreInfoUrl: v.more_info,
                                               onCtaPressed: () => showDialog(
                                                 context: context,
                                                 builder: (context) =>
@@ -126,53 +128,4 @@ class SpecialiMain extends StatelessWidget {
       },
     );
   }
-}
-
-enum VacanzeSpeciali {
-  ferragosto(
-    title: "Ferragosto nell'Artico",
-    subtitle: "Estate al fresco",
-    spashImageId: "q6mg7vushrkvn5m",
-    description:
-        "10-16 agosto 2026 - Difficoltà facile - 1690€ - 8 posti disponibili.",
-    ctaText: "Vivi l'estate in Lapponia",
-    moreInfoUrl:
-        "https://lapponiatravel.com/vacanze-speciali/10-16-agosto-2026/",
-  ),
-  ruska(
-    title: "Il Canto della Ruska",
-    subtitle: "I colori magici della Lapponia",
-    spashImageId: "xaxpq5czqd33ccg",
-    description:
-        "21-27 settembre 2026 - Difficoltà facile - 1690€ - 8 posti disponibili",
-    ctaText: "Scopri la Ruska",
-    moreInfoUrl:
-        "https://lapponiatravel.com/vacanze-speciali/21-27-settembre-2026/",
-  ),
-  gennaio(
-    title: "Il richiamo del nord",
-    subtitle: "Avventura nella neve",
-    spashImageId: "5y2rhwe4vmactoh",
-    description:
-        "22-27 gennaio 2027 - Difficoltà media - 1990€ - 8 posti disponibili.",
-    ctaText: "Scopri il vero Inverno",
-    moreInfoUrl:
-        "https://lapponiatravel.com/vacanze-speciali/22-27-gennaio-2027/",
-  );
-
-  final String title;
-  final String subtitle;
-  final String spashImageId;
-  final String description;
-  final String ctaText;
-  final String moreInfoUrl;
-
-  const VacanzeSpeciali({
-    required this.title,
-    required this.subtitle,
-    required this.spashImageId,
-    required this.description,
-    required this.ctaText,
-    required this.moreInfoUrl,
-  });
 }

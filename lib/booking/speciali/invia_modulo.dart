@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lapponia_travel_frontend/booking/speciali/main.dart';
+import 'package:lapponia_travel_frontend/booking/speciali/models.dart';
 import 'package:lapponia_travel_frontend/common/backend_router.dart';
 import 'package:lapponia_travel_frontend/common/error_handling.dart';
 
 class ModuloSpeciali extends StatelessWidget {
-  final VacanzeSpeciali vacanza;
+  final VacanzaSpeciale vacanza;
   const ModuloSpeciali({super.key, required this.vacanza});
 
   @override
