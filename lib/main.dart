@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lapponia_travel_frontend/router.dart';
 
@@ -13,6 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [const Locale('it')],
+      locale: const Locale('it'),
       title: "Lapponia Travel",
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       routerConfig: router,

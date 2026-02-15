@@ -287,7 +287,7 @@ packages:
     source: hosted
     version: "6.0.0"
   flutter_localizations:
-    dependency: transitive
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -414,7 +414,7 @@ packages:
     source: hosted
     version: "4.1.2"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
@@ -858,6 +858,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: "28cccd7e6235ab6efad75bad72bbfad6fc52f371f923f53f7f6f77e79a857da0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "32.2.4"
+  syncfusion_flutter_datepicker:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_datepicker
+      sha256: "909afd171f7422ce2810b96e5098710db87bc5527bf7387266a916bda62bc3cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "32.2.4"
   term_glyph:
     dependency: transitive
     description:

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lapponia_travel_frontend/booking/classica/wizard/riverpod.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/common/styles.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class ClassicaWizardMain extends StatelessWidget {
   const ClassicaWizardMain({super.key});
@@ -142,6 +143,71 @@ class SelectDateRange extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Placeholder();
+    final config = ref.watch(wizardProvider);
+    return Column(
+      children: [
+        config.haveSpecificDates
+            ? Text(
+                "Scegli le date in cui sarai a Levi",
+                style: CustomFonts.subheaderWithShadow(context),
+              )
+            : Text(
+                "Scegli date approssimative che pensavi per la vacanza",
+                style: CustomFonts.subheaderWithShadow(context),
+              ),
+        DateRangePickerDates(),
+      ],
+    );
+  }
+}
+
+class DateRangePickerDates extends StatelessWidget {
+  const DateRangePickerDates({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SfDateRangePicker(
+      backgroundColor: Colors.black.withAlpha(100),
+      selectionMode: DateRangePickerSelectionMode.range,
+
+      // 1. Header & Weekday Styles
+      headerStyle: DateRangePickerHeaderStyle(
+        backgroundColor: Colors.black.withAlpha(100),
+        textStyle: TextStyle(
+          color: Colors.blue,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      monthViewSettings: const DateRangePickerMonthViewSettings(
+        firstDayOfWeek: 1,
+        viewHeaderStyle: DateRangePickerViewHeaderStyle(
+          textStyle: TextStyle(
+            color: Colors.blueAccent,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+
+      // 2. Month Cell Styles (The Dates)
+      monthCellStyle: const DateRangePickerMonthCellStyle(
+        textStyle: TextStyle(color: Colors.white),
+        leadingDatesTextStyle: TextStyle(color: Colors.white24),
+        trailingDatesTextStyle: TextStyle(color: Colors.white24),
+        todayTextStyle: TextStyle(
+          color: Colors.lightBlueAccent,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+
+      // 3. Selection Colors (The "Blue" Logic)
+      selectionColor: Colors.blueAccent,
+      startRangeSelectionColor: Colors.blueAccent,
+      endRangeSelectionColor: Colors.blueAccent,
+      rangeSelectionColor: Colors.blueAccent.withAlpha(
+        100,
+      ), // Subtle bridge color
+      rangeTextStyle: const TextStyle(color: Colors.white),
+    );
   }
 }

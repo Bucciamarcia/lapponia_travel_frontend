@@ -49,6 +49,10 @@ dependencies:
   form_builder_validators: ^11.3.0
   http: ^1.6.0
   logger: ^2.6.2
+  syncfusion_flutter_datepicker: ^32.2.4
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
