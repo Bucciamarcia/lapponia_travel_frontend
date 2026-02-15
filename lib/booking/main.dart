@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/booking/single_panel.dart';
+import 'package:lapponia_travel_frontend/common/styles.dart';
 import 'package:lapponia_travel_frontend/router.dart';
 
 import 'riverpod.dart';
@@ -57,11 +58,7 @@ class BookingContent extends StatelessWidget {
           "Benvenuto! Scegli la tua vacanza",
           maxLines: 3,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: MediaQuery.of(context).size.width > 600 ? 48 : 26,
-            color: Colors.white,
-            shadows: [Shadow(color: Colors.black, offset: Offset(2, 2))],
-          ),
+          style: CustomFonts.headerWithShadow(context),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
+import 'package:lapponia_travel_frontend/common/styles.dart';
 
 class ClassicaMain extends StatelessWidget {
   const ClassicaMain({super.key});
@@ -57,7 +58,62 @@ class ClassicaContent extends StatelessWidget {
           color: Colors.black.withAlpha(100),
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 25,
+          children: [
+            Text(
+              "Crea il tuo viaggio o continua",
+              style: CustomFonts.headerWithShadow(context),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                "Crea il tuo viaggio",
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+            ContinuaConfigurazione(),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class ContinuaConfigurazione extends StatefulWidget {
+  const ContinuaConfigurazione({super.key});
+
+  @override
+  State<ContinuaConfigurazione> createState() => _ContinuaConfigurazioneState();
+}
+
+class _ContinuaConfigurazioneState extends State<ContinuaConfigurazione> {
+  late TextEditingController _controller;
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 10,
+      children: [
+        Text(
+          "Oppure, continua con una configurazione esistente:",
+          style: CustomFonts.subheaderWithShadow(context),
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 400),
+          child: TextField(controller: _controller),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          child: Text("Carica la configurazione"),
+        ),
+      ],
     );
   }
 }
