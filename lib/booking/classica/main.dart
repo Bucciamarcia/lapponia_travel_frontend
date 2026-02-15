@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/common/styles.dart';
 
@@ -35,7 +36,7 @@ class ClassicaMain extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: ClassicaContent(),
+              child: Animate(child: ClassicaContent()),
             ),
           );
         } else {
@@ -58,23 +59,33 @@ class ClassicaContent extends StatelessWidget {
           color: Colors.black.withAlpha(100),
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 25,
-          children: [
-            Text(
-              "Crea il tuo viaggio o continua",
-              style: CustomFonts.headerWithShadow(context),
+        child: Animate(
+          effects: [
+            FadeEffect(duration: Duration(seconds: 1)),
+            SlideEffect(
+              duration: Duration(seconds: 1),
+              curve: Curves.decelerate,
+              begin: Offset(0, 0.1),
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                "Crea il tuo viaggio",
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
-            ContinuaConfigurazione(),
           ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 25,
+            children: [
+              Text(
+                "Crea il tuo viaggio personalizzato a Levi, Lapponia finlandese",
+                style: CustomFonts.headerWithShadow(context),
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  "Inizia il tuo viaggio",
+                  style: TextStyle(fontSize: 24),
+                ),
+              ),
+              ContinuaConfigurazione(),
+            ],
+          ),
         ),
       ),
     );
