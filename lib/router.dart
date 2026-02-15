@@ -1,7 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:lapponia_travel_frontend/booking/booking.dart';
-import 'package:lapponia_travel_frontend/booking/classica/classica.dart';
 import 'package:lapponia_travel_frontend/booking/speciali/speciali.dart';
+
+import 'booking/classica/wizard/classica.dart';
 
 final router = GoRouter(
   routes: [
@@ -10,8 +11,8 @@ final router = GoRouter(
       builder: (context, state) => BookingScreen(),
     ),
     GoRoute(
-      path: Routes.lapponiaClassica.path,
-      builder: (context, state) => ClassicaScreen(),
+      path: Routes.lapponiaClassicaWizard.path,
+      builder: (context, state) => ClassicaWizardScreen(),
     ),
     GoRoute(
       path: Routes.vacanzeSpeciali.path,
@@ -22,7 +23,7 @@ final router = GoRouter(
 
 enum Routes {
   home(path: "/"),
-  lapponiaClassica(path: "/booking/lapponiaclassica"),
+  lapponiaClassicaWizard(path: "/booking/lapponiaclassica/wizard"),
   vacanzeSpeciali(path: "/booking/vacanzespeciali");
 
   final String path;

@@ -74,7 +74,8 @@ class BookingContent extends StatelessWidget {
                 buttonCta: "Crea la tua vacanza",
                 icon: Icon(Icons.travel_explore),
                 moreInfoUrl: "https://lapponiatravel.com/gruppi-misti/",
-                onCtaPressed: () => context.go(Routes.lapponiaClassica.path),
+                onCtaPressed: () =>
+                    context.go(Routes.lapponiaClassicaWizard.path),
               ),
             ),
             Flexible(
