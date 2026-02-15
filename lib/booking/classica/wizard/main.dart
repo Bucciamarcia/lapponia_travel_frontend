@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lapponia_travel_frontend/booking/classica/wizard/riverpod.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
+import 'package:lapponia_travel_frontend/common/styles.dart';
 
 class ClassicaWizardMain extends StatelessWidget {
   const ClassicaWizardMain({super.key});
@@ -35,7 +38,7 @@ class ClassicaWizardMain extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Animate(child: ClassicaContent()),
+              child: Animate(child: ClassicaWizardContent()),
             ),
           );
         } else {
@@ -46,11 +49,11 @@ class ClassicaWizardMain extends StatelessWidget {
   }
 }
 
-class ClassicaContent extends StatelessWidget {
-  const ClassicaContent({super.key});
+class ClassicaWizardContent extends ConsumerWidget {
+  const ClassicaWizardContent({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: EdgeInsetsGeometry.all(20),
       child: Container(
@@ -67,9 +70,78 @@ class ClassicaContent extends StatelessWidget {
               begin: Offset(0, 0.1),
             ),
           ],
-          child: Placeholder(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 25,
+            children: [AreDatesSet(), SelectDateRange()],
+          ),
         ),
       ),
     );
+  }
+}
+
+class AreDatesSet extends ConsumerWidget {
+  const AreDatesSet({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final config = ref.watch(wizardProvider);
+    return Column(
+      spacing: 15,
+      children: [
+        Text(
+          "Hai già una data specifica per il tuo viaggio?",
+          style: CustomFonts.subheaderWithShadow(context),
+        ),
+        SegmentedButton<bool>(
+          style: SegmentedButton.styleFrom(
+            // 1. Transparent or subtle background for unselected state
+            backgroundColor: Colors.white.withAlpha(30),
+            foregroundColor: Colors.white70, // Text color for unselected
+            // 2. High contrast for the active state
+            selectedBackgroundColor: Colors.blueAccent,
+            selectedForegroundColor: Colors.white,
+
+            // 3. Clean borders
+            side: BorderSide(color: Colors.white24),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          segments: [
+            ButtonSegment<bool>(
+              value: true,
+              icon: Icon(Icons.calendar_today, size: 18),
+              label: Text(
+                "Sì, ho date fissate",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            ButtonSegment<bool>(
+              icon: Icon(Icons.event_busy, size: 18),
+              value: false,
+              label: Text(
+                "No, non ho date fissate",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+          selected: {config.haveSpecificDates},
+          onSelectionChanged: (nv) {
+            ref.read(wizardProvider.notifier).changeHasSeteDates(nv.first);
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class SelectDateRange extends ConsumerWidget {
+  const SelectDateRange({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return const Placeholder();
   }
 }
