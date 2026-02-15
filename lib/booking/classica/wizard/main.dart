@@ -145,6 +145,7 @@ class SelectDateRange extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final config = ref.watch(wizardProvider);
     return Column(
+      spacing: 20,
       children: [
         config.haveSpecificDates
             ? Text(
@@ -166,48 +167,52 @@ class DateRangePickerDates extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SfDateRangePicker(
-      backgroundColor: Colors.black.withAlpha(100),
-      selectionMode: DateRangePickerSelectionMode.range,
-
-      // 1. Header & Weekday Styles
-      headerStyle: DateRangePickerHeaderStyle(
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: 800),
+      child: SfDateRangePicker(
         backgroundColor: Colors.black.withAlpha(100),
-        textStyle: TextStyle(
-          color: Colors.blue,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      monthViewSettings: const DateRangePickerMonthViewSettings(
-        firstDayOfWeek: 1,
-        viewHeaderStyle: DateRangePickerViewHeaderStyle(
+        selectionMode: DateRangePickerSelectionMode.range,
+
+        // 1. Header & Weekday Styles
+        headerStyle: DateRangePickerHeaderStyle(
+          backgroundColor: Colors.black.withAlpha(50),
+          textAlign: TextAlign.center,
           textStyle: TextStyle(
-            color: Colors.blueAccent,
+            color: Colors.blue,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-      ),
-
-      // 2. Month Cell Styles (The Dates)
-      monthCellStyle: const DateRangePickerMonthCellStyle(
-        textStyle: TextStyle(color: Colors.white),
-        leadingDatesTextStyle: TextStyle(color: Colors.white24),
-        trailingDatesTextStyle: TextStyle(color: Colors.white24),
-        todayTextStyle: TextStyle(
-          color: Colors.lightBlueAccent,
-          fontWeight: FontWeight.bold,
+        monthViewSettings: const DateRangePickerMonthViewSettings(
+          firstDayOfWeek: 1,
+          viewHeaderStyle: DateRangePickerViewHeaderStyle(
+            textStyle: TextStyle(
+              color: Colors.blueAccent,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-      ),
 
-      // 3. Selection Colors (The "Blue" Logic)
-      selectionColor: Colors.blueAccent,
-      startRangeSelectionColor: Colors.blueAccent,
-      endRangeSelectionColor: Colors.blueAccent,
-      rangeSelectionColor: Colors.blueAccent.withAlpha(
-        100,
-      ), // Subtle bridge color
-      rangeTextStyle: const TextStyle(color: Colors.white),
+        // 2. Month Cell Styles (The Dates)
+        monthCellStyle: const DateRangePickerMonthCellStyle(
+          textStyle: TextStyle(color: Colors.white),
+          leadingDatesTextStyle: TextStyle(color: Colors.white24),
+          trailingDatesTextStyle: TextStyle(color: Colors.white24),
+          todayTextStyle: TextStyle(
+            color: Colors.lightBlueAccent,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+
+        // 3. Selection Colors (The "Blue" Logic)
+        selectionColor: Colors.blueAccent,
+        startRangeSelectionColor: Colors.blueAccent,
+        endRangeSelectionColor: Colors.blueAccent,
+        rangeSelectionColor: Colors.blueAccent.withAlpha(
+          100,
+        ), // Subtle bridge color
+        rangeTextStyle: const TextStyle(color: Colors.white),
+      ),
     );
   }
 }
