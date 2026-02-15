@@ -3,6 +3,7 @@ import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/booking/single_panel.dart';
 import 'package:lapponia_travel_frontend/booking/speciali/invia_modulo.dart';
 import 'package:lapponia_travel_frontend/booking/speciali/repository.dart';
+import 'package:lapponia_travel_frontend/common/backend_router.dart';
 
 class SpecialiMain extends StatelessWidget {
   const SpecialiMain({super.key});
@@ -20,7 +21,6 @@ class SpecialiMain extends StatelessWidget {
           return Scaffold(body: Center(child: Text("Error loading image")));
         } else {
           final pageData = snapshot.data!;
-          print(pageData);
           return Scaffold(
             body: Container(
               constraints: BoxConstraints.expand(),
@@ -73,42 +73,22 @@ class SpecialiMain extends StatelessWidget {
                                   ),
                                   Wrap(
                                     children: pageData.tours.map((v) {
-                                      return FutureBuilder(
-                                        future: BookingHomeRepository()
-                                            .getImageUrl(v.splash),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.hasError) {
-                                            return Text("Error loading image");
-                                          } else if (snapshot.connectionState ==
-                                              ConnectionState.waiting) {
-                                            return SizedBox(
-                                              height: 150,
-                                              width: 150,
-                                              child: Center(
-                                                child:
-                                                    CircularProgressIndicator.adaptive(),
-                                              ),
-                                            );
-                                          } else {
-                                            final imageUrl = snapshot.data!;
-                                            return SinglePanel(
-                                              slideEntry: SlideEntry.left,
-                                              mainAsset: imageUrl,
-                                              title: v.title,
-                                              subtitle: v.subtitle,
-                                              description: v.description,
-                                              buttonCta:
-                                                  "Prenota questa vacanza",
-                                              icon: Icon(Icons.pending_actions),
-                                              moreInfoUrl: v.more_info,
-                                              onCtaPressed: () => showDialog(
-                                                context: context,
-                                                builder: (context) =>
-                                                    ModuloSpeciali(vacanza: v),
-                                              ),
-                                            );
-                                          }
-                                        },
+                                      return SinglePanel(
+                                        slideEntry: SlideEntry.left,
+                                        mainAsset: v.imageUrl(
+                                          BackendRouter.route,
+                                        ),
+                                        title: v.title,
+                                        subtitle: v.subtitle,
+                                        description: v.description,
+                                        buttonCta: "Prenota questa vacanza",
+                                        icon: Icon(Icons.pending_actions),
+                                        moreInfoUrl: v.moreInfo,
+                                        onCtaPressed: () => showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              ModuloSpeciali(vacanza: v),
+                                        ),
                                       );
                                     }).toList(),
                                   ),

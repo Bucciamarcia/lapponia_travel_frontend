@@ -4,19 +4,23 @@ part 'models.g.dart';
 
 @freezed
 sealed class VacanzaSpeciale with _$VacanzaSpeciale {
+  const VacanzaSpeciale._();
   const factory VacanzaSpeciale({
     required String id,
     required String splash,
-    required int price_cents,
+    @JsonKey(name: "price_cents") required int priceCents,
     required String title,
     required String subtitle,
     required String description,
-    required String more_info,
-    required String start_date,
-    required String end_date,
-    String? created,
-    String? updated,
+    @JsonKey(name: "more_info") required String moreInfo,
+    @JsonKey(name: "start_date") required DateTime startDate,
+    @JsonKey(name: "end_date") required DateTime endDate,
+    DateTime? created,
+    DateTime? updated,
   }) = _VacanzaSpeciale;
   factory VacanzaSpeciale.fromJson(Map<String, Object?> json) =>
       _$VacanzaSpecialeFromJson(json);
+
+  String imageUrl(String baseUrl) =>
+      "$baseUrl/api/files/vacanze_speciali/$id/$splash";
 }

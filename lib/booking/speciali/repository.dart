@@ -20,9 +20,11 @@ class VacanzeSpecialiRepository {
   Future<List<VacanzaSpeciale>> _getVacanzeSpeciali() async {
     try {
       final collection = await pb.collection("vacanze_speciali").getFullList();
-      return collection
+      final data = collection
           .map((item) => VacanzaSpeciale.fromJson(item.toJson()))
           .toList();
+      data.sort((a, b) => a.startDate.compareTo(b.startDate));
+      return data;
     } catch (e, s) {
       BasicLogger().error(
         "Couldn't get vacanze speciali",

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$VacanzaSpeciale {
 
- String get id; String get splash; int get price_cents; String get title; String get subtitle; String get description; String get more_info; String get start_date; String get end_date; String? get created; String? get updated;
+ String get id; String get splash;@JsonKey(name: "price_cents") int get priceCents; String get title; String get subtitle; String get description;@JsonKey(name: "more_info") String get moreInfo;@JsonKey(name: "start_date") DateTime get startDate;@JsonKey(name: "end_date") DateTime get endDate; DateTime? get created; DateTime? get updated;
 /// Create a copy of VacanzaSpeciale
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $VacanzaSpecialeCopyWith<VacanzaSpeciale> get copyWith => _$VacanzaSpecialeCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VacanzaSpeciale&&(identical(other.id, id) || other.id == id)&&(identical(other.splash, splash) || other.splash == splash)&&(identical(other.price_cents, price_cents) || other.price_cents == price_cents)&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.description, description) || other.description == description)&&(identical(other.more_info, more_info) || other.more_info == more_info)&&(identical(other.start_date, start_date) || other.start_date == start_date)&&(identical(other.end_date, end_date) || other.end_date == end_date)&&(identical(other.created, created) || other.created == created)&&(identical(other.updated, updated) || other.updated == updated));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VacanzaSpeciale&&(identical(other.id, id) || other.id == id)&&(identical(other.splash, splash) || other.splash == splash)&&(identical(other.priceCents, priceCents) || other.priceCents == priceCents)&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.description, description) || other.description == description)&&(identical(other.moreInfo, moreInfo) || other.moreInfo == moreInfo)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.created, created) || other.created == created)&&(identical(other.updated, updated) || other.updated == updated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,splash,price_cents,title,subtitle,description,more_info,start_date,end_date,created,updated);
+int get hashCode => Object.hash(runtimeType,id,splash,priceCents,title,subtitle,description,moreInfo,startDate,endDate,created,updated);
 
 @override
 String toString() {
-  return 'VacanzaSpeciale(id: $id, splash: $splash, price_cents: $price_cents, title: $title, subtitle: $subtitle, description: $description, more_info: $more_info, start_date: $start_date, end_date: $end_date, created: $created, updated: $updated)';
+  return 'VacanzaSpeciale(id: $id, splash: $splash, priceCents: $priceCents, title: $title, subtitle: $subtitle, description: $description, moreInfo: $moreInfo, startDate: $startDate, endDate: $endDate, created: $created, updated: $updated)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $VacanzaSpecialeCopyWith<$Res>  {
   factory $VacanzaSpecialeCopyWith(VacanzaSpeciale value, $Res Function(VacanzaSpeciale) _then) = _$VacanzaSpecialeCopyWithImpl;
 @useResult
 $Res call({
- String id, String splash, int price_cents, String title, String subtitle, String description, String more_info, String start_date, String end_date, String? created, String? updated
+ String id, String splash,@JsonKey(name: "price_cents") int priceCents, String title, String subtitle, String description,@JsonKey(name: "more_info") String moreInfo,@JsonKey(name: "start_date") DateTime startDate,@JsonKey(name: "end_date") DateTime endDate, DateTime? created, DateTime? updated
 });
 
 
@@ -65,20 +65,20 @@ class _$VacanzaSpecialeCopyWithImpl<$Res>
 
 /// Create a copy of VacanzaSpeciale
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? splash = null,Object? price_cents = null,Object? title = null,Object? subtitle = null,Object? description = null,Object? more_info = null,Object? start_date = null,Object? end_date = null,Object? created = freezed,Object? updated = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? splash = null,Object? priceCents = null,Object? title = null,Object? subtitle = null,Object? description = null,Object? moreInfo = null,Object? startDate = null,Object? endDate = null,Object? created = freezed,Object? updated = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,splash: null == splash ? _self.splash : splash // ignore: cast_nullable_to_non_nullable
-as String,price_cents: null == price_cents ? _self.price_cents : price_cents // ignore: cast_nullable_to_non_nullable
+as String,priceCents: null == priceCents ? _self.priceCents : priceCents // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,subtitle: null == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,more_info: null == more_info ? _self.more_info : more_info // ignore: cast_nullable_to_non_nullable
-as String,start_date: null == start_date ? _self.start_date : start_date // ignore: cast_nullable_to_non_nullable
-as String,end_date: null == end_date ? _self.end_date : end_date // ignore: cast_nullable_to_non_nullable
-as String,created: freezed == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
-as String?,updated: freezed == updated ? _self.updated : updated // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,moreInfo: null == moreInfo ? _self.moreInfo : moreInfo // ignore: cast_nullable_to_non_nullable
+as String,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+as DateTime,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
+as DateTime,created: freezed == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
+as DateTime?,updated: freezed == updated ? _self.updated : updated // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 
@@ -160,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String splash,  int price_cents,  String title,  String subtitle,  String description,  String more_info,  String start_date,  String end_date,  String? created,  String? updated)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String splash, @JsonKey(name: "price_cents")  int priceCents,  String title,  String subtitle,  String description, @JsonKey(name: "more_info")  String moreInfo, @JsonKey(name: "start_date")  DateTime startDate, @JsonKey(name: "end_date")  DateTime endDate,  DateTime? created,  DateTime? updated)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VacanzaSpeciale() when $default != null:
-return $default(_that.id,_that.splash,_that.price_cents,_that.title,_that.subtitle,_that.description,_that.more_info,_that.start_date,_that.end_date,_that.created,_that.updated);case _:
+return $default(_that.id,_that.splash,_that.priceCents,_that.title,_that.subtitle,_that.description,_that.moreInfo,_that.startDate,_that.endDate,_that.created,_that.updated);case _:
   return orElse();
 
 }
@@ -181,10 +181,10 @@ return $default(_that.id,_that.splash,_that.price_cents,_that.title,_that.subtit
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String splash,  int price_cents,  String title,  String subtitle,  String description,  String more_info,  String start_date,  String end_date,  String? created,  String? updated)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String splash, @JsonKey(name: "price_cents")  int priceCents,  String title,  String subtitle,  String description, @JsonKey(name: "more_info")  String moreInfo, @JsonKey(name: "start_date")  DateTime startDate, @JsonKey(name: "end_date")  DateTime endDate,  DateTime? created,  DateTime? updated)  $default,) {final _that = this;
 switch (_that) {
 case _VacanzaSpeciale():
-return $default(_that.id,_that.splash,_that.price_cents,_that.title,_that.subtitle,_that.description,_that.more_info,_that.start_date,_that.end_date,_that.created,_that.updated);}
+return $default(_that.id,_that.splash,_that.priceCents,_that.title,_that.subtitle,_that.description,_that.moreInfo,_that.startDate,_that.endDate,_that.created,_that.updated);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -198,10 +198,10 @@ return $default(_that.id,_that.splash,_that.price_cents,_that.title,_that.subtit
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String splash,  int price_cents,  String title,  String subtitle,  String description,  String more_info,  String start_date,  String end_date,  String? created,  String? updated)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String splash, @JsonKey(name: "price_cents")  int priceCents,  String title,  String subtitle,  String description, @JsonKey(name: "more_info")  String moreInfo, @JsonKey(name: "start_date")  DateTime startDate, @JsonKey(name: "end_date")  DateTime endDate,  DateTime? created,  DateTime? updated)?  $default,) {final _that = this;
 switch (_that) {
 case _VacanzaSpeciale() when $default != null:
-return $default(_that.id,_that.splash,_that.price_cents,_that.title,_that.subtitle,_that.description,_that.more_info,_that.start_date,_that.end_date,_that.created,_that.updated);case _:
+return $default(_that.id,_that.splash,_that.priceCents,_that.title,_that.subtitle,_that.description,_that.moreInfo,_that.startDate,_that.endDate,_that.created,_that.updated);case _:
   return null;
 
 }
@@ -212,21 +212,21 @@ return $default(_that.id,_that.splash,_that.price_cents,_that.title,_that.subtit
 /// @nodoc
 @JsonSerializable()
 
-class _VacanzaSpeciale implements VacanzaSpeciale {
-  const _VacanzaSpeciale({required this.id, required this.splash, required this.price_cents, required this.title, required this.subtitle, required this.description, required this.more_info, required this.start_date, required this.end_date, this.created, this.updated});
+class _VacanzaSpeciale extends VacanzaSpeciale {
+  const _VacanzaSpeciale({required this.id, required this.splash, @JsonKey(name: "price_cents") required this.priceCents, required this.title, required this.subtitle, required this.description, @JsonKey(name: "more_info") required this.moreInfo, @JsonKey(name: "start_date") required this.startDate, @JsonKey(name: "end_date") required this.endDate, this.created, this.updated}): super._();
   factory _VacanzaSpeciale.fromJson(Map<String, dynamic> json) => _$VacanzaSpecialeFromJson(json);
 
 @override final  String id;
 @override final  String splash;
-@override final  int price_cents;
+@override@JsonKey(name: "price_cents") final  int priceCents;
 @override final  String title;
 @override final  String subtitle;
 @override final  String description;
-@override final  String more_info;
-@override final  String start_date;
-@override final  String end_date;
-@override final  String? created;
-@override final  String? updated;
+@override@JsonKey(name: "more_info") final  String moreInfo;
+@override@JsonKey(name: "start_date") final  DateTime startDate;
+@override@JsonKey(name: "end_date") final  DateTime endDate;
+@override final  DateTime? created;
+@override final  DateTime? updated;
 
 /// Create a copy of VacanzaSpeciale
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VacanzaSpeciale&&(identical(other.id, id) || other.id == id)&&(identical(other.splash, splash) || other.splash == splash)&&(identical(other.price_cents, price_cents) || other.price_cents == price_cents)&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.description, description) || other.description == description)&&(identical(other.more_info, more_info) || other.more_info == more_info)&&(identical(other.start_date, start_date) || other.start_date == start_date)&&(identical(other.end_date, end_date) || other.end_date == end_date)&&(identical(other.created, created) || other.created == created)&&(identical(other.updated, updated) || other.updated == updated));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VacanzaSpeciale&&(identical(other.id, id) || other.id == id)&&(identical(other.splash, splash) || other.splash == splash)&&(identical(other.priceCents, priceCents) || other.priceCents == priceCents)&&(identical(other.title, title) || other.title == title)&&(identical(other.subtitle, subtitle) || other.subtitle == subtitle)&&(identical(other.description, description) || other.description == description)&&(identical(other.moreInfo, moreInfo) || other.moreInfo == moreInfo)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.created, created) || other.created == created)&&(identical(other.updated, updated) || other.updated == updated));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,splash,price_cents,title,subtitle,description,more_info,start_date,end_date,created,updated);
+int get hashCode => Object.hash(runtimeType,id,splash,priceCents,title,subtitle,description,moreInfo,startDate,endDate,created,updated);
 
 @override
 String toString() {
-  return 'VacanzaSpeciale(id: $id, splash: $splash, price_cents: $price_cents, title: $title, subtitle: $subtitle, description: $description, more_info: $more_info, start_date: $start_date, end_date: $end_date, created: $created, updated: $updated)';
+  return 'VacanzaSpeciale(id: $id, splash: $splash, priceCents: $priceCents, title: $title, subtitle: $subtitle, description: $description, moreInfo: $moreInfo, startDate: $startDate, endDate: $endDate, created: $created, updated: $updated)';
 }
 
 
@@ -261,7 +261,7 @@ abstract mixin class _$VacanzaSpecialeCopyWith<$Res> implements $VacanzaSpeciale
   factory _$VacanzaSpecialeCopyWith(_VacanzaSpeciale value, $Res Function(_VacanzaSpeciale) _then) = __$VacanzaSpecialeCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String splash, int price_cents, String title, String subtitle, String description, String more_info, String start_date, String end_date, String? created, String? updated
+ String id, String splash,@JsonKey(name: "price_cents") int priceCents, String title, String subtitle, String description,@JsonKey(name: "more_info") String moreInfo,@JsonKey(name: "start_date") DateTime startDate,@JsonKey(name: "end_date") DateTime endDate, DateTime? created, DateTime? updated
 });
 
 
@@ -278,20 +278,20 @@ class __$VacanzaSpecialeCopyWithImpl<$Res>
 
 /// Create a copy of VacanzaSpeciale
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? splash = null,Object? price_cents = null,Object? title = null,Object? subtitle = null,Object? description = null,Object? more_info = null,Object? start_date = null,Object? end_date = null,Object? created = freezed,Object? updated = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? splash = null,Object? priceCents = null,Object? title = null,Object? subtitle = null,Object? description = null,Object? moreInfo = null,Object? startDate = null,Object? endDate = null,Object? created = freezed,Object? updated = freezed,}) {
   return _then(_VacanzaSpeciale(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,splash: null == splash ? _self.splash : splash // ignore: cast_nullable_to_non_nullable
-as String,price_cents: null == price_cents ? _self.price_cents : price_cents // ignore: cast_nullable_to_non_nullable
+as String,priceCents: null == priceCents ? _self.priceCents : priceCents // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,subtitle: null == subtitle ? _self.subtitle : subtitle // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,more_info: null == more_info ? _self.more_info : more_info // ignore: cast_nullable_to_non_nullable
-as String,start_date: null == start_date ? _self.start_date : start_date // ignore: cast_nullable_to_non_nullable
-as String,end_date: null == end_date ? _self.end_date : end_date // ignore: cast_nullable_to_non_nullable
-as String,created: freezed == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
-as String?,updated: freezed == updated ? _self.updated : updated // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,moreInfo: null == moreInfo ? _self.moreInfo : moreInfo // ignore: cast_nullable_to_non_nullable
+as String,startDate: null == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+as DateTime,endDate: null == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
+as DateTime,created: freezed == created ? _self.created : created // ignore: cast_nullable_to_non_nullable
+as DateTime?,updated: freezed == updated ? _self.updated : updated // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 
