@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lapponia_travel_frontend/booking/classica/wizard/buttons_bottom.dart';
 import 'package:lapponia_travel_frontend/booking/classica/wizard/riverpod.dart';
 import 'package:lapponia_travel_frontend/common/styles.dart';
+import 'package:lapponia_travel_frontend/router.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class WizardDatesmain extends ConsumerWidget {
@@ -19,7 +21,7 @@ class WizardDatesmain extends ConsumerWidget {
         const SelectDateRange(),
         ButtonsBottom(
           isActive: data.endDate != null && data.startDate != null,
-          onPressed: () {},
+          onPressed: () => context.go(Routes.classicaWizardPeople.path),
         ),
       ],
     );
