@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lapponia_travel_frontend/booking/classica/wizard/buttons_bottom.dart';
 import 'package:lapponia_travel_frontend/booking/classica/wizard/riverpod.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/common/styles.dart';
@@ -55,6 +56,7 @@ class ClassicaWizardContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final data = ref.watch(wizardProvider);
     return Padding(
       padding: EdgeInsetsGeometry.all(20),
       child: Container(
@@ -74,7 +76,14 @@ class ClassicaWizardContent extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: 25,
-            children: [AreDatesSet(), SelectDateRange()],
+            children: [
+              AreDatesSet(),
+              SelectDateRange(),
+              ButtonsBottom(
+                isActive: data.endDate != null && data.startDate != null,
+                onPressed: () {},
+              ),
+            ],
           ),
         ),
       ),
