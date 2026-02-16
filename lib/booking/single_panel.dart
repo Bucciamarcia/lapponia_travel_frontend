@@ -42,15 +42,15 @@ class _SinglePanelState extends State<SinglePanel> {
   Widget build(BuildContext context) {
     return Animate(
       effects: [
-        FadeEffect(duration: Duration(seconds: 1)),
+        const FadeEffect(duration: Duration(seconds: 1)),
         SlideEffect(
-          duration: Duration(seconds: 1),
+          duration: const Duration(seconds: 1),
           curve: Curves.decelerate,
           begin: Offset(widget.slideEntry.offset, 0),
         ),
       ],
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 300),
+        constraints: const BoxConstraints(maxWidth: 300),
         child: MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),
@@ -67,7 +67,7 @@ class _SinglePanelState extends State<SinglePanel> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 400),
+                      duration: const Duration(milliseconds: 400),
                       curve: Curves.easeOut,
                       transformAlignment: Alignment.center,
                       transform: Matrix4.identity()
@@ -86,7 +86,7 @@ class _SinglePanelState extends State<SinglePanel> {
                   ),
                   Text(
                     widget.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
@@ -95,7 +95,7 @@ class _SinglePanelState extends State<SinglePanel> {
                   Text(
                     widget.subtitle,
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
@@ -104,12 +104,12 @@ class _SinglePanelState extends State<SinglePanel> {
                   Text(
                     widget.description,
                     textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                   TextButton(
                     onPressed: () async =>
                         await launchUrl(Uri.parse(widget.moreInfoUrl)),
-                    child: Row(
+                    child: const Row(
                       spacing: 10,
                       children: [
                         Text(

@@ -7,6 +7,6 @@ class SpecialiScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Template(title: "Vacanze speciali", child: SpecialiMain());
+    return const Template(title: "Vacanze speciali", child: SpecialiMain());
   }
 }

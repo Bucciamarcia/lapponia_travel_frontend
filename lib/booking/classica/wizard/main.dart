@@ -15,8 +15,8 @@ class WizardDatesmain extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       spacing: 25,
       children: [
-        AreDatesSet(),
-        SelectDateRange(),
+        const AreDatesSet(),
+        const SelectDateRange(),
         ButtonsBottom(
           isActive: data.endDate != null && data.startDate != null,
           onPressed: () {},
@@ -49,12 +49,12 @@ class AreDatesSet extends ConsumerWidget {
             selectedForegroundColor: Colors.white,
 
             // 3. Clean borders
-            side: BorderSide(color: Colors.white24),
+            side: const BorderSide(color: Colors.white24),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
           ),
-          segments: [
+          segments: const [
             ButtonSegment<bool>(
               value: true,
               icon: Icon(Icons.calendar_today, size: 18),
@@ -100,7 +100,7 @@ class SelectDateRange extends ConsumerWidget {
                 "Scegli date approssimative che pensavi per la vacanza",
                 style: CustomFonts.subheaderWithShadow(context),
               ),
-        DateRangePickerDates(),
+        const DateRangePickerDates(),
       ],
     );
   }
@@ -112,7 +112,7 @@ class DateRangePickerDates extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 800),
+      constraints: const BoxConstraints(maxWidth: 800),
       child: SfDateRangePicker(
         onSelectionChanged: (selection) {
           PickerDateRange value = selection.value;
@@ -127,7 +127,7 @@ class DateRangePickerDates extends ConsumerWidget {
         headerStyle: DateRangePickerHeaderStyle(
           backgroundColor: Colors.black.withAlpha(50),
           textAlign: TextAlign.center,
-          textStyle: TextStyle(
+          textStyle: const TextStyle(
             color: Colors.blue,
             fontSize: 18,
             fontWeight: FontWeight.bold,

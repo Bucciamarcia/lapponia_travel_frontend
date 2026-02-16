@@ -7,7 +7,7 @@ part 'riverpod.freezed.dart';
 class Wizard extends _$Wizard {
   @override
   WizardState build() {
-    return WizardState();
+    return const WizardState();
   }
 
   void changeHasSeteDates(bool v) {

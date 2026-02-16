@@ -14,16 +14,16 @@ class SpecialiMain extends StatelessWidget {
       future: VacanzeSpecialiRepository().getPagedata(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(child: CircularProgressIndicator.adaptive()),
           );
         } else if (snapshot.hasError) {
-          return Scaffold(body: Center(child: Text("Error loading image")));
+          return const Scaffold(body: Center(child: Text("Error loading image")));
         } else {
           final pageData = snapshot.data!;
           return Scaffold(
             body: Container(
-              constraints: BoxConstraints.expand(),
+              constraints: const BoxConstraints.expand(),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(pageData.splashUrl),
@@ -43,7 +43,7 @@ class SpecialiMain extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.black.withAlpha(150),
-                              borderRadius: BorderRadius.all(
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(20),
                               ),
                             ),
@@ -53,7 +53,7 @@ class SpecialiMain extends StatelessWidget {
                                 spacing: 10,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Vacanze Speciali",
                                     style: TextStyle(
                                       fontSize: 32,
@@ -61,11 +61,11 @@ class SpecialiMain extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                   Text(
                                     BookingHomeRepository
                                         .vacanzeSpecialiDescription,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       color: Colors.white70,
                                     ),
@@ -82,7 +82,7 @@ class SpecialiMain extends StatelessWidget {
                                         subtitle: v.subtitle,
                                         description: v.description,
                                         buttonCta: "Prenota questa vacanza",
-                                        icon: Icon(Icons.pending_actions),
+                                        icon: const Icon(Icons.pending_actions),
                                         moreInfoUrl: v.moreInfo,
                                         onCtaPressed: () => showDialog(
                                           context: context,

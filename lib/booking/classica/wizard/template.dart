@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lapponia_travel_frontend/booking/classica/wizard/riverpod.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 
 class WizardTemplate extends StatelessWidget {
@@ -14,11 +12,11 @@ class WizardTemplate extends StatelessWidget {
       future: BookingHomeRepository().getImageUrl("uz2nqrg73ejg5ag"),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(child: Text("Errore nel caricare l'immagine")),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: SizedBox(
                 height: 200,
@@ -31,7 +29,7 @@ class WizardTemplate extends StatelessWidget {
           final image = snapshot.data!;
           return Scaffold(
             body: Container(
-              constraints: BoxConstraints.expand(),
+              constraints: const BoxConstraints.expand(),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(image),
@@ -42,7 +40,7 @@ class WizardTemplate extends StatelessWidget {
             ),
           );
         } else {
-          return Scaffold(body: Center(child: Text("Nessun dato disponibile")));
+          return const Scaffold(body: Center(child: Text("Nessun dato disponibile")));
         }
       },
     );
@@ -56,14 +54,14 @@ class ClassicaWizardContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsGeometry.all(20),
+      padding: const EdgeInsetsGeometry.all(20),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.black.withAlpha(100),
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
         ),
         child: Animate(
-          effects: [
+          effects: const [
             FadeEffect(duration: Duration(seconds: 1)),
             SlideEffect(
               duration: Duration(seconds: 1),

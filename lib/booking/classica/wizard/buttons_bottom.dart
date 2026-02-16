@@ -23,7 +23,7 @@ class ButtonsBottom extends StatelessWidget {
             isActive ? Colors.blue : Colors.blueGrey,
           ),
         ),
-        child: Text("Continua", style: TextStyle(color: Colors.white)),
+        child: const Text("Continua", style: TextStyle(color: Colors.white)),
       ),
     );
   }

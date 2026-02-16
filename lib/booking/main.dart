@@ -18,7 +18,7 @@ class BookingMain extends ConsumerWidget {
       data: (assets) {
         return Scaffold(
           body: Container(
-            constraints: BoxConstraints.expand(),
+            constraints: const BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(assets.splash),
@@ -30,9 +30,9 @@ class BookingMain extends ConsumerWidget {
         );
       },
       error: (e, s) {
-        return Text("Error: couldn't load image");
+        return const Text("Error: couldn't load image");
       },
-      loading: () => Scaffold(
+      loading: () => const Scaffold(
         body: Center(
           child: SizedBox(
             height: 150,
@@ -72,7 +72,7 @@ class BookingContent extends StatelessWidget {
                 subtitle: "Il tuo ritmo",
                 description: BookingHomeRepository.lapponiaClassicaDescription,
                 buttonCta: "Crea la tua vacanza",
-                icon: Icon(Icons.travel_explore),
+                icon: const Icon(Icons.travel_explore),
                 moreInfoUrl: "https://lapponiatravel.com/gruppi-misti/",
                 onCtaPressed: () =>
                     context.go(Routes.lapponiaClassicaWizard.path),
@@ -86,7 +86,7 @@ class BookingContent extends StatelessWidget {
                 subtitle: "Il ritmo della natura",
                 description: BookingHomeRepository.vacanzeSpecialiDescription,
                 buttonCta: "Parti all'avventura",
-                icon: Icon(Icons.explore_outlined),
+                icon: const Icon(Icons.explore_outlined),
                 moreInfoUrl: "https://lapponiatravel.com/vacanze-speciali/",
                 onCtaPressed: () => context.go(Routes.vacanzeSpeciali.path),
               ),

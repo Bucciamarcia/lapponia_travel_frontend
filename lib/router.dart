@@ -8,15 +8,15 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: Routes.home.path,
-      builder: (context, state) => BookingScreen(),
+      builder: (context, state) => const BookingScreen(),
     ),
     GoRoute(
       path: Routes.lapponiaClassicaWizard.path,
-      builder: (context, state) => WizardTemplate(child: WizardDatesmain()),
+      builder: (context, state) => const WizardTemplate(child: WizardDatesmain()),
     ),
     GoRoute(
       path: Routes.vacanzeSpeciali.path,
-      builder: (context, state) => SpecialiScreen(),
+      builder: (context, state) => const SpecialiScreen(),
     ),
   ],
 );

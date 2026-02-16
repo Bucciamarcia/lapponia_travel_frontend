@@ -18,11 +18,11 @@ class ModuloSpeciali extends StatelessWidget {
     return AlertDialog.adaptive(
       title: Text(vacanza.title),
       content: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 500),
+        constraints: const BoxConstraints(maxWidth: 500),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
+            const Text(
               "Inserisci qui i tuoi dettagli e ti ricontatterò a breve. Tranquillo, non mordo. ;)",
             ),
             FormBuilder(
@@ -32,7 +32,7 @@ class ModuloSpeciali extends StatelessWidget {
                 children: [
                   FormBuilderTextField(
                     name: "nome",
-                    decoration: InputDecoration(labelText: "Nome completo"),
+                    decoration: const InputDecoration(labelText: "Nome completo"),
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(
                         errorText: "Campo obbligatorio",
@@ -41,7 +41,7 @@ class ModuloSpeciali extends StatelessWidget {
                   ),
                   FormBuilderTextField(
                     name: "email",
-                    decoration: InputDecoration(labelText: "Indirizzo email"),
+                    decoration: const InputDecoration(labelText: "Indirizzo email"),
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(
                         errorText: "Campo obbligatorio",
@@ -53,7 +53,7 @@ class ModuloSpeciali extends StatelessWidget {
                   ),
                   FormBuilderTextField(
                     name: "partecipanti",
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Numero di partecipanti",
                     ),
                     keyboardType: TextInputType.number,
@@ -68,7 +68,7 @@ class ModuloSpeciali extends StatelessWidget {
                   ),
                   FormBuilderTextField(
                     name: "dettagli",
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Dettagli",
                       hint: Text(
                         "Spiega più in dettaglio chi sei, che avventura cerchi, se hai domande o altro.",
@@ -94,7 +94,7 @@ class ModuloSpeciali extends StatelessWidget {
                     if (isValid == null || !isValid) return;
                     final values = formKey.currentState!.value;
                     try {
-                      final encoder = JsonEncoder.withIndent("  ");
+                      const encoder = JsonEncoder.withIndent("  ");
                       final prettyValues = encoder.convert(values);
                       await BackendRouter.post(
                         "sendemailadmin",
@@ -131,11 +131,11 @@ class ModuloSpeciali extends StatelessWidget {
                       }
                     }
                   },
-                  child: Text("Invia"),
+                  child: const Text("Invia"),
                 ),
                 ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text("Cancella", style: TextStyle(color: Colors.red)),
+                  child: const Text("Cancella", style: TextStyle(color: Colors.red)),
                 ),
               ],
             ),
