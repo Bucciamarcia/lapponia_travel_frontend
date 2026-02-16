@@ -162,14 +162,20 @@ class SelectDateRange extends ConsumerWidget {
   }
 }
 
-class DateRangePickerDates extends StatelessWidget {
+class DateRangePickerDates extends ConsumerWidget {
   const DateRangePickerDates({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: 800),
       child: SfDateRangePicker(
+        onSelectionChanged: (selection) {
+          PickerDateRange value = selection.value;
+          final start = value.startDate;
+          final end = value.endDate;
+          ref.read(wizardProvider.notifier).changeDateRange(start, end);
+        },
         backgroundColor: Colors.black.withAlpha(100),
         selectionMode: DateRangePickerSelectionMode.range,
 

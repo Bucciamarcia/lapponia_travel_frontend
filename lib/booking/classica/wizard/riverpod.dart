@@ -13,10 +13,17 @@ class Wizard extends _$Wizard {
   void changeHasSeteDates(bool v) {
     state = state.copyWith(haveSpecificDates: v);
   }
+
+  void changeDateRange(DateTime? start, DateTime? end) {
+    state = state.copyWith(startDate: start, endDate: end);
+  }
 }
 
 @freezed
 sealed class WizardState with _$WizardState {
-  const factory WizardState({@Default(true) bool haveSpecificDates}) =
-      _WizardState;
+  const factory WizardState({
+    @Default(true) bool haveSpecificDates,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) = _WizardState;
 }

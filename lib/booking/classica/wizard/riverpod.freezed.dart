@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WizardState {
 
- bool get haveSpecificDates;
+ bool get haveSpecificDates; DateTime? get startDate; DateTime? get endDate;
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $WizardStateCopyWith<WizardState> get copyWith => _$WizardStateCopyWithImpl<Wiza
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,haveSpecificDates);
+int get hashCode => Object.hash(runtimeType,haveSpecificDates,startDate,endDate);
 
 @override
 String toString() {
-  return 'WizardState(haveSpecificDates: $haveSpecificDates)';
+  return 'WizardState(haveSpecificDates: $haveSpecificDates, startDate: $startDate, endDate: $endDate)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $WizardStateCopyWith<$Res>  {
   factory $WizardStateCopyWith(WizardState value, $Res Function(WizardState) _then) = _$WizardStateCopyWithImpl;
 @useResult
 $Res call({
- bool haveSpecificDates
+ bool haveSpecificDates, DateTime? startDate, DateTime? endDate
 });
 
 
@@ -62,10 +62,12 @@ class _$WizardStateCopyWithImpl<$Res>
 
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? haveSpecificDates = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? haveSpecificDates = null,Object? startDate = freezed,Object? endDate = freezed,}) {
   return _then(_self.copyWith(
 haveSpecificDates: null == haveSpecificDates ? _self.haveSpecificDates : haveSpecificDates // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,startDate: freezed == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,endDate: freezed == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 
@@ -147,10 +149,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool haveSpecificDates)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WizardState() when $default != null:
-return $default(_that.haveSpecificDates);case _:
+return $default(_that.haveSpecificDates,_that.startDate,_that.endDate);case _:
   return orElse();
 
 }
@@ -168,10 +170,10 @@ return $default(_that.haveSpecificDates);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool haveSpecificDates)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate)  $default,) {final _that = this;
 switch (_that) {
 case _WizardState():
-return $default(_that.haveSpecificDates);}
+return $default(_that.haveSpecificDates,_that.startDate,_that.endDate);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -185,10 +187,10 @@ return $default(_that.haveSpecificDates);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool haveSpecificDates)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate)?  $default,) {final _that = this;
 switch (_that) {
 case _WizardState() when $default != null:
-return $default(_that.haveSpecificDates);case _:
+return $default(_that.haveSpecificDates,_that.startDate,_that.endDate);case _:
   return null;
 
 }
@@ -200,10 +202,12 @@ return $default(_that.haveSpecificDates);case _:
 
 
 class _WizardState implements WizardState {
-  const _WizardState({this.haveSpecificDates = true});
+  const _WizardState({this.haveSpecificDates = true, this.startDate, this.endDate});
   
 
 @override@JsonKey() final  bool haveSpecificDates;
+@override final  DateTime? startDate;
+@override final  DateTime? endDate;
 
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
@@ -215,16 +219,16 @@ _$WizardStateCopyWith<_WizardState> get copyWith => __$WizardStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,haveSpecificDates);
+int get hashCode => Object.hash(runtimeType,haveSpecificDates,startDate,endDate);
 
 @override
 String toString() {
-  return 'WizardState(haveSpecificDates: $haveSpecificDates)';
+  return 'WizardState(haveSpecificDates: $haveSpecificDates, startDate: $startDate, endDate: $endDate)';
 }
 
 
@@ -235,7 +239,7 @@ abstract mixin class _$WizardStateCopyWith<$Res> implements $WizardStateCopyWith
   factory _$WizardStateCopyWith(_WizardState value, $Res Function(_WizardState) _then) = __$WizardStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool haveSpecificDates
+ bool haveSpecificDates, DateTime? startDate, DateTime? endDate
 });
 
 
@@ -252,10 +256,12 @@ class __$WizardStateCopyWithImpl<$Res>
 
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? haveSpecificDates = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? haveSpecificDates = null,Object? startDate = freezed,Object? endDate = freezed,}) {
   return _then(_WizardState(
 haveSpecificDates: null == haveSpecificDates ? _self.haveSpecificDates : haveSpecificDates // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,startDate: freezed == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,endDate: freezed == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 
