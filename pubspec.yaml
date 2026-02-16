@@ -53,6 +53,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  flutter_spinbox: ^0.13.1
 
 dev_dependencies:
   flutter_test:

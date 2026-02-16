@@ -17,13 +17,36 @@ class Wizard extends _$Wizard {
   void changeDateRange(DateTime? start, DateTime? end) {
     state = state.copyWith(startDate: start, endDate: end);
   }
+
+  void changePeopleNumber(int adults, int minors) {
+    var toReturn = <WizardPpl>[];
+    for (var i = 0; i < adults; i++) {
+      toReturn.add(const WizardPpl(type: WizardPersona.adult));
+    }
+    for (var i = 0; i < minors; i++) {
+      toReturn.add(const WizardPpl(type: WizardPersona.minor));
+    }
+    state = state.copyWith(participants: toReturn);
+  }
 }
 
 @freezed
 sealed class WizardState with _$WizardState {
+  const WizardState._();
   const factory WizardState({
     @Default(true) bool haveSpecificDates,
     DateTime? startDate,
     DateTime? endDate,
+    @Default([]) List<WizardPpl> participants,
   }) = _WizardState;
+
+  int get minorsNumber =>
+      participants.where((p) => p.type == WizardPersona.minor).length;
 }
+
+@freezed
+sealed class WizardPpl with _$WizardPpl {
+  const factory WizardPpl({required WizardPersona type, int? age}) = _WizardPpl;
+}
+
+enum WizardPersona { adult, minor }
