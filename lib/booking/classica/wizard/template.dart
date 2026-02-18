@@ -40,7 +40,9 @@ class WizardTemplate extends StatelessWidget {
             ),
           );
         } else {
-          return const Scaffold(body: Center(child: Text("Nessun dato disponibile")));
+          return const Scaffold(
+            body: Center(child: Text("Nessun dato disponibile")),
+          );
         }
       },
     );

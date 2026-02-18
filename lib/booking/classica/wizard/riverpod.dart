@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'riverpod.g.dart';
 part 'riverpod.freezed.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Wizard extends _$Wizard {
   @override
   WizardState build() {
