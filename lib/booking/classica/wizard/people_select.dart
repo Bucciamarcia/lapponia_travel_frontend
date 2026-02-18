@@ -124,13 +124,9 @@ class MinorsAgeSelector extends ConsumerWidget {
                 max: 17,
                 value: minors[i].age == null ? 0.0 : minors[i].age!.toDouble(),
                 decoration: const InputDecoration(labelText: "Età"),
-                onChanged: (nv) {
-                  ref
-                      .read(wizardProvider.notifier)
-                      .changeSingleChildAge(i, nv.toInt());
-                  final p = ref.read(wizardProvider).participants;
-                  print(p);
-                },
+                onChanged: (nv) => ref
+                    .read(wizardProvider.notifier)
+                    .changeSingleChildAge(i, nv.toInt()),
               ),
             ),
           ),
