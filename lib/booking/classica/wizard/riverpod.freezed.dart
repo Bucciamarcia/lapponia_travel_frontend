@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$WizardState {
 
- bool get haveSpecificDates; DateTime? get startDate; DateTime? get endDate; List<WizardPpl> get participants;
+ bool get haveSpecificDates; DateTime? get startDate; DateTime? get endDate; List<WizardPpl> get participants; WizardTravelMode? get persona;
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $WizardStateCopyWith<WizardState> get copyWith => _$WizardStateCopyWithImpl<Wiza
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&const DeepCollectionEquality().equals(other.participants, participants));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&const DeepCollectionEquality().equals(other.participants, participants)&&(identical(other.persona, persona) || other.persona == persona));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,haveSpecificDates,startDate,endDate,const DeepCollectionEquality().hash(participants));
+int get hashCode => Object.hash(runtimeType,haveSpecificDates,startDate,endDate,const DeepCollectionEquality().hash(participants),persona);
 
 @override
 String toString() {
-  return 'WizardState(haveSpecificDates: $haveSpecificDates, startDate: $startDate, endDate: $endDate, participants: $participants)';
+  return 'WizardState(haveSpecificDates: $haveSpecificDates, startDate: $startDate, endDate: $endDate, participants: $participants, persona: $persona)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $WizardStateCopyWith<$Res>  {
   factory $WizardStateCopyWith(WizardState value, $Res Function(WizardState) _then) = _$WizardStateCopyWithImpl;
 @useResult
 $Res call({
- bool haveSpecificDates, DateTime? startDate, DateTime? endDate, List<WizardPpl> participants
+ bool haveSpecificDates, DateTime? startDate, DateTime? endDate, List<WizardPpl> participants, WizardTravelMode? persona
 });
 
 
@@ -62,13 +62,14 @@ class _$WizardStateCopyWithImpl<$Res>
 
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? haveSpecificDates = null,Object? startDate = freezed,Object? endDate = freezed,Object? participants = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? haveSpecificDates = null,Object? startDate = freezed,Object? endDate = freezed,Object? participants = null,Object? persona = freezed,}) {
   return _then(_self.copyWith(
 haveSpecificDates: null == haveSpecificDates ? _self.haveSpecificDates : haveSpecificDates // ignore: cast_nullable_to_non_nullable
 as bool,startDate: freezed == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as DateTime?,endDate: freezed == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as DateTime?,participants: null == participants ? _self.participants : participants // ignore: cast_nullable_to_non_nullable
-as List<WizardPpl>,
+as List<WizardPpl>,persona: freezed == persona ? _self.persona : persona // ignore: cast_nullable_to_non_nullable
+as WizardTravelMode?,
   ));
 }
 
@@ -150,10 +151,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate,  List<WizardPpl> participants)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate,  List<WizardPpl> participants,  WizardTravelMode? persona)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WizardState() when $default != null:
-return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.participants);case _:
+return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.participants,_that.persona);case _:
   return orElse();
 
 }
@@ -171,10 +172,10 @@ return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.part
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate,  List<WizardPpl> participants)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate,  List<WizardPpl> participants,  WizardTravelMode? persona)  $default,) {final _that = this;
 switch (_that) {
 case _WizardState():
-return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.participants);}
+return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.participants,_that.persona);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -188,10 +189,10 @@ return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.part
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate,  List<WizardPpl> participants)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool haveSpecificDates,  DateTime? startDate,  DateTime? endDate,  List<WizardPpl> participants,  WizardTravelMode? persona)?  $default,) {final _that = this;
 switch (_that) {
 case _WizardState() when $default != null:
-return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.participants);case _:
+return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.participants,_that.persona);case _:
   return null;
 
 }
@@ -203,7 +204,7 @@ return $default(_that.haveSpecificDates,_that.startDate,_that.endDate,_that.part
 
 
 class _WizardState extends WizardState {
-  const _WizardState({this.haveSpecificDates = true, this.startDate, this.endDate, final  List<WizardPpl> participants = const []}): _participants = participants,super._();
+  const _WizardState({this.haveSpecificDates = true, this.startDate, this.endDate, final  List<WizardPpl> participants = const [], this.persona}): _participants = participants,super._();
   
 
 @override@JsonKey() final  bool haveSpecificDates;
@@ -216,6 +217,7 @@ class _WizardState extends WizardState {
   return EqualUnmodifiableListView(_participants);
 }
 
+@override final  WizardTravelMode? persona;
 
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
@@ -227,16 +229,16 @@ _$WizardStateCopyWith<_WizardState> get copyWith => __$WizardStateCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&const DeepCollectionEquality().equals(other._participants, _participants));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WizardState&&(identical(other.haveSpecificDates, haveSpecificDates) || other.haveSpecificDates == haveSpecificDates)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&const DeepCollectionEquality().equals(other._participants, _participants)&&(identical(other.persona, persona) || other.persona == persona));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,haveSpecificDates,startDate,endDate,const DeepCollectionEquality().hash(_participants));
+int get hashCode => Object.hash(runtimeType,haveSpecificDates,startDate,endDate,const DeepCollectionEquality().hash(_participants),persona);
 
 @override
 String toString() {
-  return 'WizardState(haveSpecificDates: $haveSpecificDates, startDate: $startDate, endDate: $endDate, participants: $participants)';
+  return 'WizardState(haveSpecificDates: $haveSpecificDates, startDate: $startDate, endDate: $endDate, participants: $participants, persona: $persona)';
 }
 
 
@@ -247,7 +249,7 @@ abstract mixin class _$WizardStateCopyWith<$Res> implements $WizardStateCopyWith
   factory _$WizardStateCopyWith(_WizardState value, $Res Function(_WizardState) _then) = __$WizardStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool haveSpecificDates, DateTime? startDate, DateTime? endDate, List<WizardPpl> participants
+ bool haveSpecificDates, DateTime? startDate, DateTime? endDate, List<WizardPpl> participants, WizardTravelMode? persona
 });
 
 
@@ -264,13 +266,14 @@ class __$WizardStateCopyWithImpl<$Res>
 
 /// Create a copy of WizardState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? haveSpecificDates = null,Object? startDate = freezed,Object? endDate = freezed,Object? participants = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? haveSpecificDates = null,Object? startDate = freezed,Object? endDate = freezed,Object? participants = null,Object? persona = freezed,}) {
   return _then(_WizardState(
 haveSpecificDates: null == haveSpecificDates ? _self.haveSpecificDates : haveSpecificDates // ignore: cast_nullable_to_non_nullable
 as bool,startDate: freezed == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
 as DateTime?,endDate: freezed == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
 as DateTime?,participants: null == participants ? _self._participants : participants // ignore: cast_nullable_to_non_nullable
-as List<WizardPpl>,
+as List<WizardPpl>,persona: freezed == persona ? _self.persona : persona // ignore: cast_nullable_to_non_nullable
+as WizardTravelMode?,
   ));
 }
 

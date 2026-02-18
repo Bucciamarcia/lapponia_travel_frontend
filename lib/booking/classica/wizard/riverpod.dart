@@ -44,6 +44,10 @@ class Wizard extends _$Wizard {
       ],
     );
   }
+
+  void changeTravelMode(WizardTravelMode v) {
+    state = state.copyWith(persona: v);
+  }
 }
 
 @freezed
@@ -54,6 +58,7 @@ sealed class WizardState with _$WizardState {
     DateTime? startDate,
     DateTime? endDate,
     @Default([]) List<WizardPpl> participants,
+    WizardTravelMode? persona,
   }) = _WizardState;
 
   int get minorsNumber =>
@@ -66,3 +71,5 @@ sealed class WizardPpl with _$WizardPpl {
 }
 
 enum WizardPersona { adult, minor }
+
+enum WizardTravelMode { vacanzaCompleta, soloEsperienze }

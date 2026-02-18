@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lapponia_travel_frontend/booking/classica/wizard/riverpod.dart';
 import 'package:lapponia_travel_frontend/booking/repository.dart';
 import 'package:lapponia_travel_frontend/booking/single_panel.dart';
 import 'package:lapponia_travel_frontend/common/styles.dart';
 
-class BookingWizardTravelMode extends StatelessWidget {
+class BookingWizardTravelMode extends ConsumerWidget {
   const BookingWizardTravelMode({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       spacing: 50,
       children: [
@@ -46,7 +48,11 @@ class BookingWizardTravelMode extends StatelessWidget {
                     buttonCta: "Fai tutto per me",
                     icon: const Icon(Icons.handshake),
                     moreInfoUrl: null,
-                    onCtaPressed: () {},
+                    onCtaPressed: () {
+                      ref
+                          .read(wizardProvider.notifier)
+                          .changeTravelMode(WizardTravelMode.vacanzaCompleta);
+                    },
                   );
                 }
               },
@@ -75,7 +81,11 @@ class BookingWizardTravelMode extends StatelessWidget {
                     buttonCta: "Scegli le esperienze",
                     icon: const Icon(Icons.snowboarding),
                     moreInfoUrl: null,
-                    onCtaPressed: () {},
+                    onCtaPressed: () {
+                      ref
+                          .read(wizardProvider.notifier)
+                          .changeTravelMode(WizardTravelMode.soloEsperienze);
+                    },
                   );
                 }
               },
