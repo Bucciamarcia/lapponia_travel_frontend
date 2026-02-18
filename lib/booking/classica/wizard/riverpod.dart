@@ -24,9 +24,25 @@ class Wizard extends _$Wizard {
       toReturn.add(const WizardPpl(type: WizardPersona.adult));
     }
     for (var i = 0; i < minors; i++) {
-      toReturn.add(const WizardPpl(type: WizardPersona.minor));
+      toReturn.add(const WizardPpl(type: WizardPersona.minor, age: 0));
     }
     state = state.copyWith(participants: toReturn);
+  }
+
+  void changeSingleChildAge(int i, int v) {
+    final participants = state.participants;
+    final minors = participants
+        .where((p) => p.type == WizardPersona.minor)
+        .toList();
+
+    minors[i] = WizardPpl(type: WizardPersona.minor, age: v);
+
+    state = state.copyWith(
+      participants: [
+        ...participants.where((p) => p.type == WizardPersona.adult),
+        ...minors,
+      ],
+    );
   }
 }
 

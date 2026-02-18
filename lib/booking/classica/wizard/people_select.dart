@@ -11,19 +11,21 @@ class WizardPeopleSelector extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(wizardProvider);
-    return Column(
-      spacing: 25,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Ottimo! In quanti venite in vacanza?",
-          style: CustomFonts.headerWithShadow(context),
-        ),
-        const SelectNumberPeople(),
-        data.minorsNumber > 0
-            ? const MinorsAgeSelector()
-            : const SizedBox.shrink(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        spacing: 25,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Ottimo! In quanti venite in vacanza?",
+            style: CustomFonts.headerWithShadow(context),
+          ),
+          const SelectNumberPeople(),
+          data.minorsNumber > 0
+              ? MinorsAgeSelector(participants: data.participants)
+              : const SizedBox.shrink(),
+        ],
+      ),
     );
   }
 }
@@ -47,8 +49,7 @@ class _SelectNumberPeopleState extends ConsumerState<SelectNumberPeople> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
       spacing: 20,
       children: [
         Container(
@@ -94,11 +95,47 @@ class _SelectNumberPeopleState extends ConsumerState<SelectNumberPeople> {
   }
 }
 
-class MinorsAgeSelector extends StatelessWidget {
-  const MinorsAgeSelector({super.key});
+class MinorsAgeSelector extends ConsumerWidget {
+  final List<WizardPpl> participants;
+  const MinorsAgeSelector({super.key, required this.participants});
 
   @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final minors = participants
+        .where((p) => p.type == WizardPersona.minor)
+        .toList();
+    return Column(
+      spacing: 10,
+      children: [
+        Text(
+          "Per ogni minore indica l'età (per determinare il prezzo)",
+          style: CustomFonts.subheaderWithShadow(context),
+        ),
+        Column(
+          spacing: 10,
+          children: List.generate(
+            minors.length,
+            (i) => Container(
+              padding: const EdgeInsets.all(10),
+              width: 150,
+              decoration: BoxDecoration(color: Colors.white.withAlpha(150)),
+              child: SpinBox(
+                min: 0,
+                max: 17,
+                value: minors[i].age == null ? 0.0 : minors[i].age!.toDouble(),
+                decoration: const InputDecoration(labelText: "Età"),
+                onChanged: (nv) {
+                  ref
+                      .read(wizardProvider.notifier)
+                      .changeSingleChildAge(i, nv.toInt());
+                  final p = ref.read(wizardProvider).participants;
+                  print(p);
+                },
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

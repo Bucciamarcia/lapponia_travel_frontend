@@ -40,7 +40,7 @@ final class WizardProvider extends $NotifierProvider<Wizard, WizardState> {
   }
 }
 
-String _$wizardHash() => r'd04dcdbb9cb575b2dfc2d5122ecaea66e850ecc8';
+String _$wizardHash() => r'100571019900f12dbe3b4f6f1e0986edf45bd813';
 
 abstract class _$Wizard extends $Notifier<WizardState> {
   WizardState build();
