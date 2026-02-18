@@ -15,7 +15,10 @@ class BookingWizardTravelMode extends StatelessWidget {
           "Fantastico! Costruiamo la tua vacanza",
           style: CustomFonts.headerWithShadow(context),
         ),
-        Text("jjjjj"),
+        Text(
+          "La Lapponia è la stessa, l'esperienza dipende da come vuoi viverla. Vuoi pensare solo a goderti il viaggio, o preferisci organizzarti e scegliere le esperienze con me?",
+          style: CustomFonts.whiteText(context),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

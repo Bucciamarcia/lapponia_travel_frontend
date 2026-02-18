@@ -11,4 +11,9 @@ class CustomFonts {
     color: Colors.white,
     shadows: const [Shadow(color: Colors.black, offset: Offset(1, 1))],
   );
+  static TextStyle whiteText(BuildContext context) => TextStyle(
+    fontSize: MediaQuery.of(context).size.width > 600 ? 20 : 16,
+    color: Colors.white,
+    shadows: const [Shadow(color: Colors.black, offset: Offset(1, 1))],
+  );
 }
