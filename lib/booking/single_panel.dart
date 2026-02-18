@@ -5,13 +5,15 @@ import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class SinglePanel extends StatefulWidget {
   final SlideEntry slideEntry;
+
+  /// The direct URL of the image asset.
   final String mainAsset;
   final String title;
   final String subtitle;
   final String description;
   final String buttonCta;
   final Icon icon;
-  final String moreInfoUrl;
+  final String? moreInfoUrl;
   final Function() onCtaPressed;
   const SinglePanel({
     super.key,
@@ -106,23 +108,25 @@ class _SinglePanelState extends State<SinglePanel> {
                     textAlign: TextAlign.left,
                     style: const TextStyle(color: Colors.white),
                   ),
-                  TextButton(
-                    onPressed: () async =>
-                        await launchUrl(Uri.parse(widget.moreInfoUrl)),
-                    child: const Row(
-                      spacing: 10,
-                      children: [
-                        Text(
-                          "Più informazioni",
-                          style: TextStyle(
-                            color: Colors.white,
-                            decoration: TextDecoration.underline,
+                  widget.moreInfoUrl != null
+                      ? TextButton(
+                          onPressed: () async =>
+                              await launchUrl(Uri.parse(widget.moreInfoUrl!)),
+                          child: const Row(
+                            spacing: 10,
+                            children: [
+                              Text(
+                                "Più informazioni",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                              Icon(Icons.open_in_new, color: Colors.white),
+                            ],
                           ),
-                        ),
-                        Icon(Icons.open_in_new, color: Colors.white),
-                      ],
-                    ),
-                  ),
+                        )
+                      : const SizedBox.shrink(),
                   Center(
                     child: ElevatedButton.icon(
                       onPressed: () => widget.onCtaPressed(),

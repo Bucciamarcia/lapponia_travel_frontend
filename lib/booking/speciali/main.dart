@@ -18,7 +18,9 @@ class SpecialiMain extends StatelessWidget {
             body: Center(child: CircularProgressIndicator.adaptive()),
           );
         } else if (snapshot.hasError) {
-          return const Scaffold(body: Center(child: Text("Error loading image")));
+          return const Scaffold(
+            body: Center(child: Text("Error loading image")),
+          );
         } else {
           final pageData = snapshot.data!;
           return Scaffold(
