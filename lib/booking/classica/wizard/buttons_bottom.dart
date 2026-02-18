@@ -15,7 +15,7 @@ class ButtonsBottom extends StatelessWidget {
     return Tooltip(
       message: isActive
           ? "Continua il tuo viaggio"
-          : "Inserisci delle date prima di continuare",
+          : "Completa i campi prima di continuare",
       child: ElevatedButton(
         onPressed: isActive ? () => onPressed() : null,
         style: ButtonStyle(

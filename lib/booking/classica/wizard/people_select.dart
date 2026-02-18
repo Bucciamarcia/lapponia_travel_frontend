@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinbox/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lapponia_travel_frontend/booking/classica/wizard/buttons_bottom.dart';
 import 'package:lapponia_travel_frontend/booking/classica/wizard/riverpod.dart';
 import 'package:lapponia_travel_frontend/common/styles.dart';
+import 'package:lapponia_travel_frontend/router.dart';
 
 /// To select the number and age of ppl in the group.
 class WizardPeopleSelector extends ConsumerWidget {
@@ -24,6 +27,10 @@ class WizardPeopleSelector extends ConsumerWidget {
           data.minorsNumber > 0
               ? MinorsAgeSelector(participants: data.participants)
               : const SizedBox.shrink(),
+          ButtonsBottom(
+            isActive: true,
+            onPressed: () => context.go(Routes.classicaWizardTravelMode.path),
+          ),
         ],
       ),
     );
